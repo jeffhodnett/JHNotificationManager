@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>title</key>
+		<string>Slide In Top</string>
+		<key>direction</key>
+		<integer>0</integer>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Slide In Left</string>
+		<key>direction</key>
+		<integer>1</integer>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Slide In Left Out Right</string>
+		<key>direction</key>
+		<integer>2</integer>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Slide In Right</string>
+		<key>direction</key>
+		<integer>3</integer>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Slide In Right Out Left</string>
+		<key>direction</key>
+		<integer>4</integer>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Flip In</string>
+		<key>direction</key>
+		<integer>5</integer>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Rotate In</string>
+		<key>direction</key>
+		<integer>6</integer>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Swing In Up Left</string>
+		<key>direction</key>
+		<integer>7</integer>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Swing In Down Left</string>
+		<key>direction</key>
+		<integer>8</integer>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Swing In Up Right</string>
+		<key>direction</key>
+		<integer>9</integer>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Swing In Down Right</string>
+		<key>direction</key>
+		<integer>10</integer>
+	</dict>
+</array>
+</plist>

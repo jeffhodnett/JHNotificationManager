@@ -1,0 +1,3 @@
+JHNotificationManager is a singleton that can be extended to show notifications over the foremost window. It queues up notifications and displays them until the queue is empty. It makes for nicer alerts than a UIAlertView.
+
+Developed by Jeff Hodnett

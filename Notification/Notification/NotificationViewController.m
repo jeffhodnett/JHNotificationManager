@@ -2,56 +2,95 @@
 //  NotificationViewController.m
 //  Notification
 //
-//  Created by Jeff Hodnett on 13/09/2011.
-//  Copyright 2011 Applausible. All rights reserved.
+//  Created by Toni Chau on 12/19/13.
+//  Copyright (c) 2013 Toni Chau. All rights reserved.
 //
 
 #import "NotificationViewController.h"
 #import "JHNotificationManager.h"
 
+@interface NotificationViewController ()
+
+@end
+
 @implementation NotificationViewController
 
-- (void)dealloc
+- (id)initWithStyle:(UITableViewStyle)style
 {
+    self = [super initWithStyle:style];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    // Set title
+    self.title = @"Notification Demo";
+    [self.tableView setShowsVerticalScrollIndicator:NO];
+    
+    // Load items from plist
+    _items = [[NSArray alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"items" ofType:@"plist"]];
+    
+}
+
+-(void)dealloc
+{
+    [_items release];
+    
     [super dealloc];
 }
 
 - (void)didReceiveMemoryWarning
 {
-    // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    // Return the number of sections.
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    // Return the number of rows in the section.
+    return [_items count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    }
     
-    // Release any cached data, images, etc that aren't in use.
+    // Configure the cell...
+    NSDictionary *data = [_items objectAtIndex:indexPath.row];
+    cell.textLabel.text = [data objectForKey:@"title"];
+    
+    return cell;
 }
 
-#pragma mark - View lifecycle
-
-/*
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad
+#pragma mark - Table view delegate
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [super viewDidLoad];
-}
-*/
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
--(IBAction)showNotification:(id)sender
-{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    // Get data
+    NSDictionary *data = [_items objectAtIndex:indexPath.row];
+    
     // Show the notification
     static int counter = 1;
-    [JHNotificationManager notificationWithMessage:[NSString stringWithFormat:@"Notification %d", counter]];
+    
+    [JHNotificationManager notificationWithMessage:[NSString stringWithFormat:@"Notification %d", counter] direction:[[data objectForKey:@"direction"] intValue]];
     
     counter++;
 }
